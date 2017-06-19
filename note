@@ -1,0 +1,67 @@
+Note:
+
+
+
+
+HOW TO install bootstrap
+- npm i -g bower  (bower is not suggested use yarn)
+
+app.get('/login', function(req, res) {
+	// render login page
+})
+
+app.post('/login', function(req, res) {
+	// verify credentials and issue cookie
+})
+
+
+
+Request object exposed details of HTTP request
+Goolge fo more example
+eg.
+app.get('/login', function(req, res) {
+	var par =  req.params; //req.params -- route params in URL
+});
+
+Many ways to responds to requests
+res methods
+pp.get('/login', function(req, res) {
+	res.send();
+	res.render('login'); // render a view (super cool)
+	res.redirect();
+});
+
+
+How to use Bootstrap
+- npm i -g bower (bower is a package manager for front end stuff)
+- bower i bootstrap
+	will generate a new directory parallel with node_modules
+	it contains bootstraps and jquery
+
+
+Writing my own middleware
+Middleware are just functions
+- involked in the order they are app.use() (in order of the app.js file)
+- route callback functions are just middleware that terminates requests ???
+- the middleware that don't generate reponses (to client) must call next() or requests will never end!
+// exmple of logging 
+app.use(function(req, res, next) {
+	console.log(req.method + ' ' + req.url + ' ' + (new Date()));
+					// this is to log req information and date;
+	next();
+		// next() is to terminate the middleware, since it doesn't reponds to client
+});
+
+
+Writing Error Handlers
+Error handler has 4 arguments, first one is err
+// example
+app.use(function(err, req, res, next) {
+	res.status(err.status || 500);
+	res.render('error', {              // when error happens render an error page
+		message: err.message,
+		error: err
+	});
+});
+
+!!! When the next() is called with error, all subsequent middleware skipped except for error handler

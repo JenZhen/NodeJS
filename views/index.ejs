@@ -1,0 +1,28 @@
+</!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My Header</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+</head>
+<body>
+	<dir>
+		<h1><%=title %></h1>
+		<%= new Date() %>
+		<ul>
+			<% for (var i = 0; i < items.length; i++) { %>
+				<li><%= items[i].desc %></li>
+			<% } %>
+		</ul>
+
+		<form action='/add' method='post'>
+			<input type="text" name="newItem">
+			<input type="submit">
+		</form>	
+	</dir>
+	
+
+	<script type="text/javascript" src="jquery/dist/jquery.js"></script>
+	<script src="bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>
